@@ -1,4 +1,4 @@
-package src.model;
+package com.example.sprout.model;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

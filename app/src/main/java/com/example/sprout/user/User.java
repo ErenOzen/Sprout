@@ -1,12 +1,11 @@
-package src.user;
+package com.example.sprout.user;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
-import src.model.CalendarEvent;
-import src.model.Habit;
-import src.model.Timeline;
-import src.model.Todo;
+import com.example.sprout.model.CalendarEvent;
+import com.example.sprout.model.Habit;
+import com.example.sprout.model.Timeline;
+import com.example.sprout.model.Todo;
 
 public class User {
     private String email;
@@ -18,7 +17,7 @@ public class User {
     // forest (in some form)
 
 
-    public User(String email, String password, Timeline timeline, Todo todos, ArrayList<Habit> habits, ArrayList<src.model.CalendarEvent> calendarEvent) {
+    public User(String email, String password, Timeline timeline, Todo todos, ArrayList<Habit> habits, ArrayList<com.example.sprout.model.CalendarEvent> calendarEvent) {
         this.email = email;
         this.password = password;
         this.timeline = timeline;
