@@ -1,4 +1,4 @@
-package com.example.sprout.user;
+package com.example.sprout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
