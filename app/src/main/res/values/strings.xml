@@ -10,4 +10,11 @@
     <string name="login_screen_forgot">Forgot Password?</string>
     <string name="login_screen_sign_up">Sign Up</string>
     <string name="login_screen_sign_in">Sign In</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="email_text">E-mail</string>
+    <string name="hint_email">Your email address</string>
+    <string name="password_text">Password</string>
+    <string name="hint_password">Your password</string>
+    <string name="sign_up_button">Continue</string>
+    <string name="sing_up_checkbox">I agree to the Terms of Services and Privacy Policy.</string>
 </resources>
