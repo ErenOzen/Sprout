@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">Sprout</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="LoginScreenSproutName">Sprout</string>
+    <string name="login_screen_login">Login</string>
+    <string name="login_screen_greet">Hi, there! Nice to meet you again.</string>
+    <string name="login_screen_email">Email</string>
+    <string name="login_screen_password">Password</string>
+    <string name="login_screen_forgot">Forgot Password?</string>
+    <string name="login_screen_sign_up">Sign Up</string>
+    <string name="login_screen_sign_in">Sign In</string>
     <string name="sign_up_text">Sign Up</string>
     <string name="email_text">E-mail</string>
     <string name="hint_email">Your email address</string>
