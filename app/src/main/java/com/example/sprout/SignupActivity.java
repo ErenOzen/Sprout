@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.example.sprout.R;
 
-public class Signup extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
