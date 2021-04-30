@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
 
+    //Instance Variables
     private TextView sprout;
     private TextView signUp;
     private EditText email;
@@ -63,6 +64,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * Helper method for when a user press the sign up button
+     */
     private void registerUser() {
 
         String emailString =  email.getText().toString().trim();

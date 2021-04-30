@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Instance Variables
     private TextView signUp;
     private TextView forgotPassword;
     private EditText editTextEmail;
@@ -71,6 +72,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Helper method for when the user sign in
+     */
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();

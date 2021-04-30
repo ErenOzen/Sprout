@@ -14,8 +14,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * This class is the java file for ForgotPassword Activity screen / exm file .
+ * @author DilayYigit, Eren Ozen
+ * @version 30 April 2021
+ */
 public class ForgotPassword extends AppCompatActivity {
 
+    //Instance Variables
     private EditText emailEditText;
     private Button resetPasswordButton;
 

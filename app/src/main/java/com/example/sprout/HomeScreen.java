@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class HomeScreen extends AppCompatActivity {
 
+    //Instance Variables
     private Button logout;
 
     @Override
