@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
     <TextView
-        android:id="@+id/login_activity_textview_sprout"
+        android:id="@+id/signup_activity_textview_sprout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -45,7 +45,7 @@
         android:textColorHint="#ffba08"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_activity_textview_sprout" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_activity_textview_sprout" />
 
     <TextView
         android:id="@+id/login_screen_greet"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/login_activity_textview_login" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login_activity_button_signin"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/login_activity_textview_ForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -111,10 +111,10 @@
         android:textColorHint="#ffba08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_button_signin" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/login_activity_textview_SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -123,5 +123,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_textview_ForgotPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
