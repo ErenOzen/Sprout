@@ -33,6 +33,10 @@ public class User {
         this.habits = new Habits();
         CalendarEvent = calendarEvent;
     }
+    public User (String email,String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     /**
      * Getter method for email of user
