@@ -24,7 +24,16 @@ public class User {
     // forest (in some form)
     // calendar event is not working
 
-    //Constructor
+    //Constructors
+    public User() {
+
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User(String email, String password, Timeline timeline, ArrayList<com.example.sprout.model.CalendarEvent> calendarEvent) {
         this.email = email;
         this.password = password;
@@ -32,10 +41,6 @@ public class User {
         this.todos = new Todo();
         this.habits = new Habits();
         CalendarEvent = calendarEvent;
-    }
-    public User (String email,String password) {
-        this.email = email;
-        this.password = password;
     }
 
     /**

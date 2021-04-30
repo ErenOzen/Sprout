@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
     <TextView
-        android:id="@+id/singup_sprout_text"
+        android:id="@+id/signup_activity_textview_sprout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -21,10 +21,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_sprout_view" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_imageview_sprout" />
 
     <ImageView
-        android:id="@+id/login_sprout_view"
+        android:id="@+id/login_activity_imageview_sprout"
         android:layout_width="143dp"
         android:layout_height="121dp"
         android:layout_marginTop="4dp"
@@ -35,7 +35,7 @@
         app:srcCompat="@drawable/noun_sprout_109966" />
 
     <TextView
-        android:id="@+id/login_text"
+        android:id="@+id/login_activity_textview_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -45,7 +45,7 @@
         android:textColorHint="#ffba08"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/singup_sprout_text" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_activity_textview_sprout" />
 
     <TextView
         android:id="@+id/login_screen_greet"
@@ -59,10 +59,10 @@
         android:textColorHint="#ffba08"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_text" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_textview_login" />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/login_activity_button_signin"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
@@ -72,10 +72,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <EditText
-        android:id="@+id/login_email"
+        android:id="@+id/editTextTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/login_screen_greet" />
 
     <EditText
-        android:id="@+id/login_password"
+        android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -100,10 +100,10 @@
         android:textColorHint="#ffba08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <TextView
-        android:id="@+id/login_forgotPassword"
+        android:id="@+id/login_activity_textview_ForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -111,18 +111,17 @@
         android:textColorHint="#ffba08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_button_signin" />
 
-    <Button
-        android:id="@+id/login_signupBtn"
-        android:layout_width="105dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="16dp"
-        android:text="Sign Up"
-        android:textColor="#FFC107"
-        app:backgroundTint="#00FFFFFF"
+    <TextView
+        android:id="@+id/login_activity_textview_SignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/login_screen_sign_up"
+        android:textColorHint="#ffba08"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_forgotPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_textview_ForgotPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
