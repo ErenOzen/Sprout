@@ -1,73 +1,127 @@
 package com.example.sprout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+/**
+ * This class is the java file for Login Activity screen / exm file .
+ * @author DilayYigit, Eren Ozen
+ * @version 30 April 2021
+ */
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView signUp;
+    private TextView forgotPassword;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private Button signIn;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        View rootView;
-        rootView = LayoutInflater.from(this).inflate(R.layout.activity_login, null);
+        signUp = (TextView) findViewById(R.id.login_activity_textview_SignUp);
+        signUp.setOnClickListener(this);
 
-        Button loginBtn = (Button) findViewById(R.id.loginBtn);
-        Button login_signupBtn = (Button) findViewById(R.id.login_signupBtn);
+        signIn = (Button) findViewById(R.id.login_activity_button_signin);
+        signIn.setOnClickListener(this);
 
-        TextView login_text = (TextView) findViewById(R.id.login_text);
-        TextView login_screen_greet = (TextView) findViewById(R.id.login_screen_greet);
-        EditText login_email = (EditText) findViewById(R.id.login_email);
-        EditText login_password = (EditText) findViewById(R.id.login_password);
-        ImageView login_sprout_view = (ImageView) findViewById(R.id.login_sprout_view);
-        TextView login_sprout_text = (TextView) findViewById(R.id.singup_sprout_text);
+        editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
+        editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+
+        forgotPassword = (TextView) findViewById(R.id.login_activity_textview_ForgotPassword);
+        forgotPassword.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.login_activity_textview_SignUp:
+                startActivity(new Intent(this, SignupActivity.class));
+                break;
+
+            case R.id.login_activity_button_signin:
+                userLogin();
+                break;
+
+            case R.id.login_activity_textview_ForgotPassword:
+                startActivity(new Intent(this,ForgotPassword.class));
+                break;
+
+        }
+    }
+
+    private void userLogin() {
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+
+        if(email.isEmpty()) {
+            editTextEmail.setError("Email is required!");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextEmail.setError("Please enter a valid email!");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if(password.isEmpty()){
+            editTextPassword.setError("Password is required!");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        if(password.length() < 6) {
+            editTextPassword.setError("Min password length is 6 characters!");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onClick(View view) {
-                if(login_email.length() == 0){
-                    login_email.setError("Email is required!");
-                    login_email.requestFocus();
-                    return;
-                }
-                if(login_password.length() == 0 ){
-                    login_password.setError("Password is required!");
-                    login_password.requestFocus();
-                    return;
-                }
-                /*
-                userAuthenticationDb.authUser(email, password, new UserAuthenticationCallBack() {
-                    @Override
-                    public void onCallBack(boolean isAuth, String message) {
-                        if(isAuth){
-                            Intent intent = new Intent(rootView.getContext(), HomeScreen.class);
-                            rootView.getContext().startActivity(intent);
-                        } else {
-                            Toast.makeText(getBaseContext(),"Giris yapilamadi ", Toast.LENGTH_LONG).show();
-                        }
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(user.isEmailVerified()) {
+                        startActivity(new Intent(LoginActivity.this, HomeScreen.class));
+                    } else{
+                        user.sendEmailVerification();
+                        Toast.makeText(LoginActivity.this, "Check your email to verify your account!",
+                                Toast.LENGTH_LONG).show();
                     }
-                });
-                */
+                } else {
+                    Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        login_signupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(rootView.getContext(), SignupActivity.class);
-                rootView.getContext().startActivity(intent);
-            }
-        });
+
+
+
     }
 }

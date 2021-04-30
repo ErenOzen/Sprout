@@ -1,82 +1,127 @@
 package com.example.sprout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sprout.user.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class SignupActivity extends AppCompatActivity {
+/**
+ * This class is the java file for SignUp Activity screen / exm file .
+ * @author DilayYigit, ErenOzen
+ * @version 30 April 2021
+ */
+public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private TextView sprout;
+    private TextView signUp;
+    private EditText email;
+    private EditText password;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        View rootView;
-        rootView = LayoutInflater.from(this).inflate(R.layout.activity_signup, null);
+        mAuth = FirebaseAuth.getInstance();
 
-        Button signupBtn = (Button) findViewById(R.id.signupBtn);
-        TextView singup_text = (TextView) findViewById(R.id.singup_text);
-        TextView signup_email_text = (TextView) findViewById(R.id.signup_email_text);
-        EditText signup_hint_email = (EditText) findViewById(R.id.signup_hint_email);
-        TextView signup_password_text = (TextView) findViewById(R.id.signup_password_text);
-        EditText signup_hint_password = (EditText) findViewById(R.id.signup_hint_password);
-        CheckBox signup_checkBox = (CheckBox) findViewById(R.id.signup_checkBox);
-        ImageView signup_sprout_view = (ImageView) findViewById(R.id.signup_sprout_view);
-        TextView singup_sprout_text = (TextView) findViewById(R.id.singup_sprout_text);
+        sprout = (TextView) findViewById(R.id.signup_activity_textview_sprout);
+        sprout.setOnClickListener(this);
 
-        signupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(signup_hint_email.length() == 0) {
-                    signup_hint_email.setError("ERROR");
-                    signup_hint_email.requestFocus();
-                    return;
-                }
-                if (signup_hint_password.length() == 0) {
-                    signup_hint_password.setError("ERROR");
-                    signup_hint_password.requestFocus();
-                    return;
-                }
-                if (signup_hint_password.length() < 6) {
-                    signup_hint_password.setError("ERROR");
-                    signup_hint_password.requestFocus();
-                    return;
-                }
-                if (signup_checkBox.isChecked() == false) {
-                    signup_hint_password.setError("ERROR");
-                    signup_hint_password.requestFocus();
-                    return;
-                }
-                User user = new User(signup_hint_email.toString(), signup_hint_password.toString());
-                signupBtn.setEnabled(false);
+        signUp = (Button) findViewById(R.id.signup_activity_signupBtn);
+        signUp.setOnClickListener(this);
 
-                /*Database olustuktan sonra editlenecek.
-                 @userCreatorDb - class
-                 @UserCreatorCallBack - interface
-                userCreatorDb.createUser(user, signup_hint_password, new UserCreatorCallBack() {
+        email = (EditText) findViewById(R.id.signup_activity_hint_email);
+        password = (EditText) findViewById(R.id.signup_activity_hint_password);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.signup_activity_textview_sprout:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case R.id.signup_activity_signupBtn:
+                registerUser();
+                break;
+        }
+    }
+
+    private void registerUser() {
+
+        String emailString =  email.getText().toString().trim();
+        String passwordString =  password.getText().toString().trim();
+
+        if(emailString.isEmpty()) {
+            email.setError("Email is required!");
+            email.requestFocus();
+            return;
+        }
+
+        if(passwordString.isEmpty()) {
+            password.setError("Password is required!");
+            password.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailString).matches()){
+            email.setError("Please provide valid email!");
+            email.requestFocus();
+            return;
+        }
+
+        if (passwordString.length() < 6) {
+            password.setError("Min password length should be 6 characters!");
+            password.requestFocus();
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(emailString,passwordString)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onCallBack(boolean isCreated) {
-                        if(isCreated){
-                            Toast.makeText(getBaseContext(), "success", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(rootView.getContext(), HomeScreen.class);
-                            rootView.getContext().startActivity(intent);
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+                            User user = new User(emailString,passwordString);
+
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(SignupActivity.this, "User has been registered successfully!",
+                                                Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(SignupActivity.this,"Failed to register! Try Again!",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                         } else {
-                            Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
-                            signupBtn.setEnabled(true);
+                            Toast.makeText(SignupActivity.this,"Failed to register! Try Again!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-                */
-            }
-        });
+
+
     }
 }
