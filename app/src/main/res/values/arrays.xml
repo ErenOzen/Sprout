@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="habits">
+        <item>Brush Teeth</item>
+        <item>Drink Water</item>
+        <item>Eat Fruit</item>
+        <item>Eat Vegetables</item>
+        <item>Quit Smoking</item>
+        <item>Read Book</item>
+        <item>Study Regularly</item>
+    </string-array>
+
+    <integer-array name="images">
+        <item>@drawable/brushteeth</item>
+        <item>@drawable/drinkwater</item>
+        <item>@drawable/eatfruit</item>
+        <item>@drawable/eatvegetables</item>
+        <item>@drawable/quitsmoking</item>
+        <item>@drawable/readbook</item>
+        <item>@drawable/studyregularly</item>
+    </integer-array>
+
+    <integer-array name="colors">
+        <item>@color/h1</item>
+        <item>@color/h2</item>
+        <item>@color/h3</item>
+        <item>@color/h4</item>
+        <item>@color/h5</item>
+        <item>@color/h6</item>
+    </integer-array>
+
+
+</resources>

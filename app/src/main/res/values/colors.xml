@@ -23,4 +23,11 @@
     <color name="CPP">#EF5350</color>
     <color name="Java">#29B6F6</color>
 
+    <color name="h1">#66BB6A</color>
+    <color name="h2">#9CCC65</color>
+    <color name="h3">#93CF4D</color>
+    <color name="h4">#9DCA68</color>
+    <color name="h5">#79BC7D</color>
+    <color name="h6">#6E9C3A</color>
+
 </resources>

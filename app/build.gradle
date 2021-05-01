@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.sprout"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -44,4 +44,5 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.github.igalata:Bubble-Picker:v0.2.4'
 }
