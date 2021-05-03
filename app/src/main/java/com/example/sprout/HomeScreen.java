@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -23,10 +24,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
  * @author DilayYigit, Eren Ozen
  * @version 30 April 2021
  */
-public class HomeScreen extends AppCompatActivity {
+public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
 
     //Instance Variables
-
+    private FloatingActionButton addEvent;
 
    // private Button logout;
 
@@ -34,6 +35,9 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        addEvent = (FloatingActionButton) findViewById(R.id.floatingActionButtonNewEvent);
+        addEvent.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         toolbar.setTitle(R.string.drawer_item_home);
@@ -102,18 +106,14 @@ public class HomeScreen extends AppCompatActivity {
 
                 .build();
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.floatingActionButtonNewEvent:
+            startActivity(new Intent(this,TimerActivity.class));
+            break;
+        }
     }
 }
