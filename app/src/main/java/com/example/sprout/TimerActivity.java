@@ -3,11 +3,19 @@ package com.example.sprout;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TimerActivity extends AppCompatActivity {
+
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+    TextView textView;
 
     private Chronometer chronometer;
     private long pauseOffset;
@@ -16,6 +24,19 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+
+        radioGroup = findViewById(R.id.radioGroup);
+        textView = findViewById(R.id.text_view_selected);
+        Button buttonApply = findViewById(R.id.button_apply);
+        buttonApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(radioId);
+                textView.setText("Your choice: " + radioButton.getText());
+            }
+        });
+
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("Time: %s");
         //chronometer.setBase(SystemClock.elapsedRealtime());
@@ -46,5 +67,12 @@ public class TimerActivity extends AppCompatActivity {
     public void resetChronometer(View v) {
         chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset = 0;
+    }
+
+    public void checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
+        //Toast.makeText(this,"Selected Radio Button: " + radioButton.getText(),Toast.LENGTH_LONG).show();
+
     }
 }
