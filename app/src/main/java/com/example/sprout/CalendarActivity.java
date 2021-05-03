@@ -80,6 +80,10 @@ public class CalendarActivity extends AppCompatActivity {
                                 startActivity(new Intent(CalendarActivity.this, HabitActivity.class));
                                 break;
 
+                            case 5:
+                                startActivity(new Intent(CalendarActivity.this, ProfileActivity.class));
+                                break;
+
 
                         }
                         return false;
