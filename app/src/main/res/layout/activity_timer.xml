@@ -54,19 +54,19 @@
         android:layout_alignParentTop="true"
         android:onClick="resetChronometer"
         android:text="Reset"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/timerEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/timerEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:ems="10"
+        android:hint="Activity Name"
         android:inputType="textPersonName"
-        android:text="Activity Name"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup" />
 
     <RadioGroup
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+        app:layout_constraintTop_toBottomOf="@+id/timerEditText">
 
         <RadioButton
             android:id="@+id/radio_entertainment"

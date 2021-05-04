@@ -15,9 +15,9 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".TodoActivity" />
-        <activity android:name=".HomeScreen" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".HomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
