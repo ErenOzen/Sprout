@@ -1,8 +1,10 @@
 package com.example.sprout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +31,9 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
+
 /**
  * This class is the java file for HomeScreen Activity screen / exm file .
  * @author DilayYigit, Eren Ozen
@@ -38,19 +43,39 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
     //Instance Variables
     private FloatingActionButton addEvent;
+    private FloatingActionButton report;
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
     public static User activeUser;
-   // private Button logout;
+    TextView tvEntertainment;
+    TextView tvStudy;
+    TextView tvSport;
+    TextView tvSocializing;
+    TextView tvWork;
+    TextView tvUnknown;
+
+    PieChart pieChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        tvEntertainment = findViewById(R.id.tvEntertainment);
+        tvStudy = findViewById(R.id.tvStudy);
+        tvSport = findViewById(R.id.tvSport);
+        tvSocializing = findViewById(R.id.tvSocializing);
+        tvUnknown = findViewById(R.id.tvUnknown);
+        tvWork = findViewById(R.id.tvWork);
+        pieChart = findViewById(R.id.piechart);
+        setData();
+
         addEvent = (FloatingActionButton) findViewById(R.id.floatingActionButtonNewEvent);
+        report = (FloatingActionButton) findViewById(R.id.floatingActionButtonReport);
         addEvent.setOnClickListener(this);
+        report.setOnClickListener(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -146,6 +171,56 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.floatingActionButtonNewEvent:
             startActivity(new Intent(this,TimerActivity.class));
             break;
+            case R.id.floatingActionButtonReport:
+                startActivity(new Intent(this,ReportActivity.class));
+                break;
+
         }
+    }
+
+    private void setData() {
+        // Set the percentage of language used
+        tvEntertainment.setText(Integer.toString(10));
+        tvStudy.setText(Integer.toString(20));
+        tvSport.setText(Integer.toString(5));
+        tvSocializing.setText(Integer.toString(5));
+        tvWork.setText(Integer.toString(5));
+        tvUnknown.setText(Integer.toString(55));
+
+        // Set the data and color to the pie chart
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Entertainment",
+                        Integer.parseInt(tvEntertainment.getText().toString()),
+                        Color.parseColor("#5E35B1")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Study",
+                        Integer.parseInt(tvStudy.getText().toString()),
+                        Color.parseColor("#1E88E5")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Sport",
+                        Integer.parseInt(tvSport.getText().toString()),
+                        Color.parseColor("#005E04")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Socializing",
+                        Integer.parseInt(tvSocializing.getText().toString()),
+                        Color.parseColor("#8E24AA")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Work",
+                        Integer.parseInt(tvWork.getText().toString()),
+                        Color.parseColor("#E53935")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Unknown",
+                        Integer.parseInt(tvUnknown.getText().toString()),
+                        Color.parseColor("#525555")));
+
+
+// To animate the pie chart
+        pieChart.startAnimation();
     }
 }
