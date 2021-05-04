@@ -14,15 +14,55 @@ public class Event {
 
     //Instance variables
     private String name;
+    private String category;
+    private long timeInSec;
     private LocalDateTime time;
     private final String[] eventTypes = {"Entertainment" , "Socializing" , "Work" , "Study", "Sport" , "Unknown"};
     private String eventType;
 
-    //Constructor
+    //Constructors
     public Event(String name, LocalDateTime time, int eventTypeNum) {
         this.name = name;
         this.time = time;
         eventTypes[eventTypeNum] = eventType;
+    }
+
+    public Event(String name, String category, long timeInSec) {
+        this.name = name;
+        this.category = category;
+        this.timeInSec = timeInSec;
+    }
+
+    /**
+     * Getter method for event's category
+     * @return category
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * Setter method for event category
+     * @param category
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    /**
+     * Getter method for timeInSec
+     * @return timeInSec
+     */
+    public long getTimeInSec() {
+        return timeInSec;
+    }
+
+    /**
+     * Setter method for TimeInSec
+     * @param timeInSec
+     */
+    public void setTimeInSec(long timeInSec) {
+        this.timeInSec = timeInSec;
     }
 
     /**
