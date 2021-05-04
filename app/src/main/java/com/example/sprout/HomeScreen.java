@@ -3,11 +3,21 @@ package com.example.sprout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.sprout.user.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -28,7 +38,10 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
     //Instance Variables
     private FloatingActionButton addEvent;
-
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+    public static User activeUser;
    // private Button logout;
 
     @Override
@@ -38,6 +51,25 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         addEvent = (FloatingActionButton) findViewById(R.id.floatingActionButtonNewEvent);
         addEvent.setOnClickListener(this);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+                if (userProfile != null) {
+                    String email = userProfile.getEmail();
+                    activeUser = new User(email);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomeScreen.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         toolbar.setTitle(R.string.drawer_item_home);

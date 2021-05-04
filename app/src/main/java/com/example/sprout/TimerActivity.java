@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sprout.model.Event;
+
 public class TimerActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
@@ -19,9 +21,10 @@ public class TimerActivity extends AppCompatActivity {
     private TextView textView;
     private EditText editText;
     private String activityName;
+    private String activityCategory;
     private long activityTime;
     private int seconds;
-    private String chrobase;
+
 
     private Chronometer chronometer;
     private long pauseOffset;
@@ -45,8 +48,11 @@ public class TimerActivity extends AppCompatActivity {
                 activityName = editText.getText().toString();
                 int radioId = radioGroup.getCheckedRadioButtonId();
                 radioButton = findViewById(radioId);
-                textView.setText("Category: " + radioButton.getText() + "\nName: " + activityName + "\nTime: " + (activityTime) );
+                activityCategory = radioButton.getText().toString();
+                textView.setText("Category: " + activityCategory + "\nName: " + activityName + "\nTime: " + (activityTime) );
                 //textView.setText(activityName);
+                Event newEvent = new Event(activityName,activityCategory,activityTime);
+                HomeScreen.activeUser.getTimeline().addEvent(newEvent);
             }
         });
 

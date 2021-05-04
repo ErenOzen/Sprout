@@ -34,7 +34,12 @@ public class User {
         this.password = password;
     }
 
-    public User(String email, String password, Timeline timeline, ArrayList<com.example.sprout.model.CalendarEvent> calendarEvent) {
+    public User(String email) {
+        this.email = email;
+        this.timeline = new Timeline();
+    }
+
+    public User(String email, String password, ArrayList<com.example.sprout.model.CalendarEvent> calendarEvent) {
         this.email = email;
         this.password = password;
         this.timeline = new Timeline();
@@ -57,6 +62,14 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Getter method for user's timeline
+     * @return timeline
+     */
+    public Timeline getTimeline() {
+        return timeline;
     }
 
     /**

@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_selected"
         android:layout_centerHorizontal="true"
-        android:text="apply"
+        android:text="apply and add"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
