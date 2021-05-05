@@ -48,14 +48,21 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     private DatabaseReference reference;
     private String userID;
     public static User activeUser;
-    TextView tvEntertainment;
-    TextView tvStudy;
-    TextView tvSport;
-    TextView tvSocializing;
-    TextView tvWork;
-    TextView tvUnknown;
+    public static TextView tvEntertainment;
+    public static TextView tvStudy;
+    public static TextView tvSport;
+    public static TextView tvSocializing;
+    public static TextView tvWork;
+    public static TextView tvUnknown;
 
-    PieChart pieChart;
+    public static int entertainmentValue = 3;
+    public static int studyValue = 2;
+    public static int sportValue = 1;
+    public static int socializingValue = 3;
+    public static int workValue = 2;
+    public static int unknownValue = 5;
+
+    public static PieChart pieChart;
 
 
     @Override
@@ -111,7 +118,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                 .withHeaderBackground(R.drawable.ic_launcher_background)
                 .withTextColorRes(R.color.color_white)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Birwar Biryok").withEmail("nowar@gmail.com").withIcon(getResources().getDrawable(R.drawable.noun_sprout_109966))
+                        new ProfileDrawerItem().withName("Eren Özen").withEmail("erenozen@outlook.com").withIcon(getResources().getDrawable(R.drawable.noun_sprout_109966))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -180,12 +187,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
     private void setData() {
         // Set the percentage of language used
-        tvEntertainment.setText(Integer.toString(10));
-        tvStudy.setText(Integer.toString(20));
-        tvSport.setText(Integer.toString(5));
-        tvSocializing.setText(Integer.toString(5));
-        tvWork.setText(Integer.toString(5));
-        tvUnknown.setText(Integer.toString(55));
+        tvEntertainment.setText(Integer.toString(entertainmentValue));
+        tvStudy.setText(Integer.toString(studyValue));
+        tvSport.setText(Integer.toString(sportValue));
+        tvSocializing.setText(Integer.toString(socializingValue));
+        tvWork.setText(Integer.toString(workValue));
+        tvUnknown.setText(Integer.toString(unknownValue));
 
         // Set the data and color to the pie chart
         pieChart.addPieSlice(
@@ -220,7 +227,29 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                         Color.parseColor("#525555")));
 
 
+
 // To animate the pie chart
         pieChart.startAnimation();
     }
+
+    public static void resetEntertainmentValue() {
+        entertainmentValue = 0;
+    }
+    public static void resetWorkValue() {
+        workValue = 0;
+    }
+    public static void resetUnknownValue() {
+        unknownValue = 0;
+    }
+    public static void resetSocializingValue() {
+        socializingValue = 0;
+    }
+    public static void resetSportValue() {
+        sportValue = 0;
+    }
+    public static void resetStudyValue() {
+        studyValue = 0;
+    }
+
+
 }

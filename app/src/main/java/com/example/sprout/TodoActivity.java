@@ -90,7 +90,7 @@ public class TodoActivity extends AppCompatActivity implements DialogCloseListen
                 .withHeaderBackground(R.drawable.ic_launcher_background)
                 .withTextColorRes(R.color.color_white)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Birwar Biryok").withEmail("nowar@gmail.com").withIcon(getResources().getDrawable(R.drawable.noun_sprout_109966))
+                        new ProfileDrawerItem().withName("Eren Özen").withEmail("erenozen@outlook.com").withIcon(getResources().getDrawable(R.drawable.noun_sprout_109966))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override

@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .withHeaderBackground(R.drawable.ic_launcher_background)
                 .withTextColorRes(R.color.color_white)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Birwar Biryok").withEmail("nowar@gmail.com").withIcon(getResources().getDrawable(R.drawable.noun_sprout_109966))
+                        new ProfileDrawerItem().withName("Eren Özen").withEmail("erenozen@outlook.com").withIcon(getResources().getDrawable(R.drawable.noun_sprout_109966))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -133,10 +133,21 @@ public class ProfileActivity extends AppCompatActivity {
         logout = (Button) findViewById(R.id.logout_button);
 
         logout.setOnClickListener(new View.OnClickListener() {
+
+
+
+
             @Override
             public void onClick(View v) {
+                HomeScreen.resetEntertainmentValue();
+                HomeScreen.resetSocializingValue();
+                HomeScreen.resetSportValue();
+                HomeScreen.resetStudyValue();
+                HomeScreen.resetWorkValue();
+                HomeScreen.resetUnknownValue();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+
             }
         });
     }

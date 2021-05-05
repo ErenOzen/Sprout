@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
-                android:text="Activity Types (In Percentage):"
+                android:text="Activity Types (In Secconds):"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
