@@ -29,4 +29,10 @@ android applications, Legacy Android Java Classes will used at every point inste
 ## Features
 * Sign up and Login feature with Google Accounts
 * Visualized activity trackers with weekly and daily reports.
-* 
+* Habit tracker 
+* Calendar
+
+### Built With
+* [Android Studio](https://developer.android.com/studio)
+* [Firebase](https://firebase.google.com/)
+* [Java](https://www.java.com/en/download/)
